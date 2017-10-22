@@ -1,23 +1,21 @@
 {
   "name": "cth-debug",
-  "version": "1.0.1",
-  "description": "",
+  "version": "1.0.3",
+  "description": "A console proxy wrapper for the browser with localStorage-based configurable scoping",
   "main": "index.js",
+  "dependencies": {},
+  "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": ""
+    "url": "git+https://github.com/EirikBirkeland/cth-debug.git"
   },
   "author": "Eirik Birkeland",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/EirikBirkeland/debug/issues"
+    "url": "https://github.com/EirikBirkeland/cth-debug/issues"
   },
-  "homepage": "https://github.com/EirikBirkeland/debug#readme",
-  "dependencies": {
-    "ansicolor": "^1.1.68",
-    "glob-to-regexp": "^0.3.0"
-  }
+  "homepage": "https://github.com/EirikBirkeland/cth-debug#readme"
 }

@@ -1,8 +1,8 @@
 const globToRegexp = require('glob-to-regexp')
 
 /**
- * @param scopename
- * @returns {log}
+ * @param scopename - the local scopename
+ * @returns {Object}
  */
 function createNewDebugger(scopename) {
     const handler = {
@@ -15,7 +15,7 @@ function createNewDebugger(scopename) {
                 }
 
                 const pattern = globToRegexp(localStorage['cth-debug'])
-                if (scopename.match(pattern)) {
+                if (pattern.test(scopename)) {
                     const result = origMethod.apply(this, args);
                     return result
                     // Return warn and error always, regardless of settings.
@@ -26,7 +26,6 @@ function createNewDebugger(scopename) {
             }
         }
     }
-
     return new Proxy(console, handler)
 }
 
