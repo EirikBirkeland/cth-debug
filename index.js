@@ -11,7 +11,8 @@ function createNewDebugger(scopename) {
             return function (...args) {
 
                 if (!localStorage['cth-debug']) {
-                    return
+                    const result = origMethod.apply(this, args);
+                    return result
                 }
 
                 const pattern = globToRegexp(localStorage['cth-debug'])
