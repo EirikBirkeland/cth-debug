@@ -1,10 +1,15 @@
 {
   "name": "cth-debug",
-  "version": "1.0.3",
+  "version": "1.0.5",
   "description": "A console proxy wrapper for the browser with localStorage-based configurable scoping",
   "main": "index.js",
-  "dependencies": {},
-  "devDependencies": {},
+  "dependencies": {
+    "glob-to-regexp": "^0.3.0"
+  },
+  "devDependencies": {
+    "ava": "^0.22.0",
+    "node-localstorage": "^1.3.0"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
