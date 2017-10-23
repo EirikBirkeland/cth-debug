@@ -2,7 +2,7 @@
 A console proxy wrapper for the browser, with localStorage-based configurable scoping
 
 Usage:
-``` JavaScript
+```js
 const debug = require('cth-debug')('alpha')
 
 // All console methods are available:
