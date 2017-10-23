@@ -9,7 +9,6 @@ function createNewDebugger(scopename, opts) {
         get(target, propKey, receiver) {
             const origMethod = target[propKey];
             return function (...args) {
-
                 if (localStorage) {
                     if (!localStorage['cth-debug']) {
                         const result = origMethod.apply(this, args);
@@ -34,7 +33,7 @@ function createNewDebugger(scopename, opts) {
                     const result = origMethod.apply(this, args);
                     return result
                 } else {
-                    // Experimental: return null in order for unit tests to know what's up
+                    // Return null when a call was rejected (mainly for unit tests)
                     return null
                 }
             }
