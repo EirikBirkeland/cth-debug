@@ -11,8 +11,7 @@ function createNewDebugger(scopename, opts) {
             return function (...args) {
                 if (localStorage) {
                     if (!localStorage['cth-debug']) {
-                        const result = origMethod.apply(this, args);
-                        return result
+                        return
                     }
                 } else {
                     throw new Error("Your environment does not have localStorage")
