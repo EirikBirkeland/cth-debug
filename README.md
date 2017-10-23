@@ -5,7 +5,7 @@ Usage:
 ```js
 const debug = require('cth-debug')('scopeA')
 
-// All console methods are available:
+// All native console methods are available:
 debug.log("foo") // foo
 debug.info("foo") // foo
 debug.warn("foo") // foo
