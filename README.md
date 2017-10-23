@@ -13,12 +13,13 @@ debug.warn("foo") // foo
 localStorage['cth-debug'] = 'beta'
 
 // scopeA is now out of scope!
-debug.log("foo") // <no output>
-debug.info("bar") // <no output>
-debug.warn("baz") // <no output>
+debug.log("foo") // null
+debug.info("foo") // null
+debug.warn("foo") // null
 
-// glob (*) to match all scopes, giving you global log output 
+// glob (*) to match all scopes, giving you global log output
 localStorage['cth-debug'] = '*'
+
 debug.log("foo") // foo
 debug.info("foo") // foo
 debug.warn("foo") // foo
