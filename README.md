@@ -24,3 +24,5 @@ debug.log("foo") // foo
 debug.info("foo") // foo
 debug.warn("foo") // foo
 ```
+
+I personally use this to selectively suppress output from parts of large web apps. I was originally using the `debug` module, but it didn't fit my needs since it's mainly Node-oriented, so I rewrote something that's lightweight and lets me use the original console object with all its methods.
