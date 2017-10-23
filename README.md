@@ -12,10 +12,10 @@ debug.warn("foo") // foo
 
 localStorage['cth-debug'] = 'scopeB'
 
-// scopeA is now out of scope!
+// scopeA is now out of scope, but warn and error methods are still printed:
 debug.log("foo") // null
 debug.info("foo") // null
-debug.warn("foo") // null
+debug.warn("foo") // foo
 
 // glob (*) to match all scopes, giving you global log output
 localStorage['cth-debug'] = '*'
