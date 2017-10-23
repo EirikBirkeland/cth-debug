@@ -3,14 +3,14 @@ A console proxy wrapper for the browser, with localStorage-based configurable sc
 
 Usage:
 ```js
-const debug = require('cth-debug')('alpha')
+const debug = require('cth-debug')('scopeA')
 
 // All console methods are available:
 debug.log("foo") // foo
 debug.info("foo") // foo
 debug.warn("foo") // foo
 
-localStorage['cth-debug'] = 'beta'
+localStorage['cth-debug'] = 'scopeB'
 
 // scopeA is now out of scope!
 debug.log("foo") // null
