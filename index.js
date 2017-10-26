@@ -12,8 +12,9 @@ function createNewDebugger(scopename, opts) {
             return function (...args) {
 
                 const origMethod = target[propKey];
-                
-                if (propKey === 'warn' || propKey === 'error') {
+
+                // Always return immediately all but the specified console methods.
+                if (!propKey.match(/debug|log|info/)) {
                     if (opts.quiet) {
                         return
                     }
@@ -23,9 +24,11 @@ function createNewDebugger(scopename, opts) {
 
 
                 if (typeof localStorage === "undefined") {
-                    return
-                } else {
                     // "Your environment does not have localStorage"
+                    return
+                } else if (!localStorage['cth-debug']) {
+                    // Returning because no cth-debug variable is set
+                    return
                 }
 
                 const pattern = globToRegexp(localStorage['cth-debug'])
@@ -36,7 +39,6 @@ function createNewDebugger(scopename, opts) {
                     }
                     const result = origMethod.apply(this, args);
                     return result
-                    // Return warn and error always, regardless of settings.
                 } else {
                     // Return null when a call was rejected (mainly for unit tests)
                     return null
