@@ -7,17 +7,27 @@ const globToRegexp = require('glob-to-regexp')
 function createNewDebugger(scopename, opts) {
     const handler = {
         get(target, propKey, receiver) {
+
+            if (propKey === 'warn' || propKey === 'error') {
+                if (opts.quiet) {
+                    return
+                }
+                const result = origMethod.apply(this, args);
+                return result
+            }
+
             const origMethod = target[propKey];
+
             return function (...args) {
-                if (typeof localStorage !== "undefined") {
-                    if (!localStorage['cth-debug']) {
-                        return
-                    }
+                
+                if (typeof localStorage === "undefined") {
+                    return
                 } else {
-                    return console.warn("Your environment does not have localStorage")
+                    // "Your environment does not have localStorage"
                 }
 
                 const pattern = globToRegexp(localStorage['cth-debug'])
+
                 if (pattern.test(scopename)) {
                     if (opts.quiet) {
                         return
@@ -25,12 +35,6 @@ function createNewDebugger(scopename, opts) {
                     const result = origMethod.apply(this, args);
                     return result
                     // Return warn and error always, regardless of settings.
-                } else if (propKey === 'warn' || propKey === 'error') {
-                    if (opts.quiet) {
-                        return
-                    }
-                    const result = origMethod.apply(this, args);
-                    return result
                 } else {
                     // Return null when a call was rejected (mainly for unit tests)
                     return null
