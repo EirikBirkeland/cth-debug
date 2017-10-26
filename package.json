@@ -1,6 +1,6 @@
 {
   "name": "cth-debug",
-  "version": "1.0.10",
+  "version": "1.0.11",
   "description": "A console proxy wrapper for the browser with localStorage-based configurable scoping",
   "main": "index.js",
   "dependencies": {

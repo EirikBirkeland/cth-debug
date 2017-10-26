@@ -9,12 +9,12 @@ function createNewDebugger(scopename, opts) {
         get(target, propKey, receiver) {
             const origMethod = target[propKey];
             return function (...args) {
-                if (localStorage) {
+                if (typeof localStorage !== "undefined") {
                     if (!localStorage['cth-debug']) {
                         return
                     }
                 } else {
-                    throw new Error("Your environment does not have localStorage")
+                    return console.warn("Your environment does not have localStorage")
                 }
 
                 const pattern = globToRegexp(localStorage['cth-debug'])
