@@ -6,20 +6,22 @@ const globToRegexp = require('glob-to-regexp')
  */
 function createNewDebugger(scopename, opts) {
     const handler = {
+
         get(target, propKey, receiver) {
 
-            if (propKey === 'warn' || propKey === 'error') {
-                if (opts.quiet) {
-                    return
-                }
-                const result = origMethod.apply(this, args);
-                return result
-            }
-
-            const origMethod = target[propKey];
-
             return function (...args) {
+
+                const origMethod = target[propKey];
                 
+                if (propKey === 'warn' || propKey === 'error') {
+                    if (opts.quiet) {
+                        return
+                    }
+                    const result = origMethod.apply(this, args);
+                    return result
+                }
+
+
                 if (typeof localStorage === "undefined") {
                     return
                 } else {
