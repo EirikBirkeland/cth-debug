@@ -4,7 +4,7 @@ const globToRegexp = require('glob-to-regexp')
  * @param scopename - the local scopename
  * @returns {Object} - a Proxy for console
  */
-function createNewDebugger(scopename, opts) {
+function createNewDebugger(scopename, opts = {}) {
     const handler = {
 
         get(target, propKey, receiver) {
@@ -21,8 +21,7 @@ function createNewDebugger(scopename, opts) {
                     const result = origMethod.apply(this, args);
                     return result
                 }
-
-
+                
                 if (typeof localStorage === "undefined") {
                     // "Your environment does not have localStorage"
                     return
