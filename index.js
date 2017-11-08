@@ -1,5 +1,9 @@
 const globToRegexp = require('glob-to-regexp')
 
+// TODO: Make it faster
+// TODO: add support for arbitrary global variable (or env variable?)
+// TODO: Allow user to pass options as multiple parameters or as a single opts object
+
 /**
  * @param scopename - the local scopename
  * @returns {Object} - a Proxy for console
@@ -14,10 +18,8 @@ function createNewDebugger(scopename, opts = {}) {
                 const origMethod = target[propKey];
 
                 // Always return immediately all but the specified console methods.
-                if (!propKey.match(/debug|log|info/)) {
-                    if (opts.quiet) {
-                        return
-                    }
+                if (!propKey.match(/debug|log|info|group|groupEnd/)) {
+                    if(opts.quiet) {return}
                     const result = origMethod.apply(this, args);
                     return result
                 }
@@ -33,9 +35,7 @@ function createNewDebugger(scopename, opts = {}) {
                 const pattern = globToRegexp(localStorage['cth-debug'])
 
                 if (pattern.test(scopename)) {
-                    if (opts.quiet) {
-                        return
-                    }
+                    if(opts.quiet) {return}
                     const result = origMethod.apply(this, args);
                     return result
                 } else {
