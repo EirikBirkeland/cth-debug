@@ -1,4 +1,6 @@
 # cth-debug
+
+[![Greenkeeper badge](https://badges.greenkeeper.io/EirikBirkeland/cth-debug.svg)](https://greenkeeper.io/)
 A console proxy wrapper for the browser, with localStorage-based configurable scoping
 
 Usage:
